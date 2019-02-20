@@ -1,13 +1,13 @@
 import inspect
 from abc import ABC, abstractmethod
 
-from ioc_containers.base_container import BaseContainer
+from flying_ioc.base_container import BaseContainer
 
 
-class Factory(ABC):
+class IocFactory(ABC):
     @staticmethod
     @abstractmethod
-    def get_instance(ioc_manager, name, frame_info):
+    def get_instance(ioc_manager, name: str, frame_info: inspect.FrameInfo):
         raise NotImplementedError()
 
 
@@ -26,7 +26,7 @@ class FactoryContainer(BaseContainer):
         return self._storage.get_instance(ioc_manager=self._ioc_manager, name=self._name, frame_info=frame_info)
 
     def __init__(self, name, cls, ioc_manager, stats=None):
-        if not issubclass(cls, Factory):
+        if not issubclass(cls, IocFactory):
             raise AttributeError('Argument cls should be a subclass of Factory')
         super().__init__(storage=cls, stats=stats)
         self._ioc_manager = ioc_manager

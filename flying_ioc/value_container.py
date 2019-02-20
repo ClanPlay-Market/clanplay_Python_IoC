@@ -1,4 +1,4 @@
-from ioc_containers.base_container import BaseContainer
+from flying_ioc.base_container import BaseContainer
 
 
 class ValueContainer(BaseContainer):

@@ -1,5 +1,4 @@
-from ioc_containers.factory_container import Factory
-from ioc_manager import IocManager
+from flying_ioc import IocManager, IocFactory
 
 
 class TSingleton1:
@@ -33,7 +32,7 @@ class TSingleton3dot3:
         self.ts = ts
 
 
-class MyFactory(Factory):
+class MyIocFactory(IocFactory):
     @staticmethod
     def get_instance(ioc_manager, name, frame_info):
         if frame_info.function == 'test_factory_container':
@@ -50,7 +49,7 @@ def test_factory_container():
 
     ioc.set_class(name='TSingleton1', cls=TSingleton1, singleton=True)
     ioc.set_class(name='TSingleton2', cls=TSingleton2, singleton=False)
-    ioc.set_factory(name='TSingleton3', cls=MyFactory)
+    ioc.set_factory(name='TSingleton3', cls=MyIocFactory)
     ioc.set_class(name='TSingleton3dot1', cls=TSingleton3dot1, singleton=False)
     ioc.set_class(name='TSingleton3dot2', cls=TSingleton3dot2, singleton=False)
     ioc.set_class(name='TSingleton3dot3', cls=TSingleton3dot3, singleton=False)

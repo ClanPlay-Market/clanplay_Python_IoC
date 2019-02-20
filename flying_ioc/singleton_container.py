@@ -1,4 +1,4 @@
-from ioc_containers.class_container import ClassContainer
+from flying_ioc.class_container import ClassContainer
 
 
 class SingletonContainer(ClassContainer):

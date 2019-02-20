@@ -1,5 +1,4 @@
-from ioc_decorator import NotInject
-from ioc_manager import IocManager
+from flying_ioc import IocManager, NotInject
 
 
 class Parent1:

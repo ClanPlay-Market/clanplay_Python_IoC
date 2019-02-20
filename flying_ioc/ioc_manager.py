@@ -1,17 +1,8 @@
-import traceback
+from flying_ioc.class_container import ClassContainer
+from flying_ioc.factory_container import FactoryContainer
+from flying_ioc.singleton_container import SingletonContainer
+from flying_ioc.value_container import ValueContainer
 
-from ioc_containers.class_container import ClassContainer
-from ioc_containers.factory_container import FactoryContainer
-from ioc_containers.singleton_container import SingletonContainer
-from ioc_containers.value_container import ValueContainer
-
-
-# phases:
-# 1. only get by name, values, not creating classes
-# 2. creating class, only singleton, no base classes
-# 2a. singleton with args
-# 3. only singleton, base class same or less arguments
-# 4. only singleton, base class other arguments
 
 class IocManager:
     def __init__(self, stats=False):
@@ -25,8 +16,8 @@ class IocManager:
         try:
             return self._containers[name].get()
         except AttributeError as e:
-            traceback.print_exception(e, e, e.__traceback__)
-            raise RuntimeError(e)
+            # traceback.print_exception(e, e, e.__traceback__)
+            raise TypeError(e)
 
     def set_value(self, name: str, value):
         self.__store_by_name(name, ValueContainer(value=value, stats=self._stats))

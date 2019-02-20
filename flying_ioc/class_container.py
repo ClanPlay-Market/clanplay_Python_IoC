@@ -1,8 +1,8 @@
 import inspect
 import threading
 
-from ioc_containers.base_container import BaseContainer
-from ioc_decorator import NotInject
+from flying_ioc.base_container import BaseContainer
+from flying_ioc import NotInject
 
 
 class ClassContainer(BaseContainer):
@@ -18,7 +18,7 @@ class ClassContainer(BaseContainer):
 
         init_args = {}
 
-        not_inject = NotInject.get_not_injected_containers(self._storage)
+        not_inject = NotInject.get_not_injected_names(self._storage)
         args, varargs, varkw, defaults, kwonlyargs, kwonlydefaults, annotations = \
             self.__fill_args(self._storage, init_args, not_inject=not_inject)
 
